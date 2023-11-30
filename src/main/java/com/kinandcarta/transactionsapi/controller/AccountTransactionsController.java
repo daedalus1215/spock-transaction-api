@@ -23,6 +23,6 @@ public class AccountTransactionsController {
 
     @GetMapping("/{accountId}/transactions")
     public ResponseEntity<List<TransactionResponse>> getAccountTransactions(@PathVariable long accountId, @RequestParam(required = false) String fromDate) {
-        return null;
+        return ResponseEntity.ok(transactionsService.getTransactions(accountId, fromDate));
     }
 }
