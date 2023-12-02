@@ -13,7 +13,7 @@ import java.time.LocalDate
 class TransactionServiceSpec extends Specification {
     private TransactionRepository transactionRepositoryMock
     private AccountRepository accountRepositoryMock
-    private TransactionsService transactionsService
+        private TransactionsService transactionsService
 
     def setup() {
         transactionRepositoryMock = Mock(TransactionRepository)
@@ -29,7 +29,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransactions is invoked"
-        def actual = transactionsService.getTransactions(accountId, fromDate)
+        final def actual = transactionsService.getTransactions(accountId, fromDate)
 
         then: "returns expected transaction"
         verifyAll {
@@ -47,7 +47,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransactions is invoked"
-        def actual = transactionsService.getTransactions(accountId, null)
+        final def actual = transactionsService.getTransactions(accountId, null)
 
         then: "returns expected transaction"
         verifyAll {
@@ -65,7 +65,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransaction is invoked but repository returns no results"
-        def actual = transactionsService.getTransactions(accountId, null)
+        final def actual = transactionsService.getTransactions(accountId, null)
 
         then: "transactions will be empty"
         verifyAll {
@@ -90,7 +90,7 @@ class TransactionServiceSpec extends Specification {
         transactionsService.getTransactions(accountId, null)
 
         then: "throws an AccountNotFoundException"
-        def actual = thrown(AccountNotFoundException)
+        final AccountNotFoundException actual = thrown(AccountNotFoundException)
         actual.message == "The card member account with an id of ${accountId} was not found."
     }
 }
