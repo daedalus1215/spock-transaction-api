@@ -6,8 +6,8 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
 
-import static datafixtures.RandomGenerator.randomInt
-import static datafixtures.RandomGenerator.randomString
+import static utils.RandomGenerator.randomInt
+import static utils.RandomGenerator.randomString
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
@@ -15,8 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class AccountTransactionsControllerSpec extends Specification {
     private TransactionsService transactionsServiceMock
-    private MockMvc mvcMock;
-    private AccountTransactionsController target;
+    private MockMvc mvcMock
+    private AccountTransactionsController target
 
     def setup() {
         transactionsServiceMock = Mock(TransactionsService)
@@ -27,8 +27,8 @@ class AccountTransactionsControllerSpec extends Specification {
 
     def "should retrieve transactions without a fromDate in request parameter"() {
         given: "an accountId as a path variable"
-        def transaction = new TransactionResponseBuilder().build()
-        def accountId = randomInt();
+        final def transaction = new TransactionResponseBuilder().build()
+        final def accountId = randomInt()
 
         when: "request is made against registered request handler with the accountId"
         mvcMock.perform(get("/accounts/{accountId}/transactions", accountId))
@@ -46,9 +46,9 @@ class AccountTransactionsControllerSpec extends Specification {
 
     def "should retrieve with a fromDate in request parameter"() {
         given: "an account Id as a path variable and fromDate as a request parameter"
-        def transaction = new TransactionResponseBuilder().build()
-        def accountId = randomInt();
-        def fromDate = randomString();
+        final def transaction = new TransactionResponseBuilder().build()
+        final def accountId = randomInt()
+        final def fromDate = randomString()
 
         when: "request is made against registered request handler with the accountId and fromDate"
         1 * transactionsServiceMock.getTransactions(accountId, fromDate) >> [transaction]
