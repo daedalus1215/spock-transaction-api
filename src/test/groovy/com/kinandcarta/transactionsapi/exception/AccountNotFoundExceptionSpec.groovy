@@ -12,7 +12,7 @@ class AccountNotFoundExceptionSpec extends Specification {
 
         when:
         "AccountNotFoundException is instantiated with accountId: ${accountId}"
-        final AccountNotFoundException target = new AccountNotFoundException(accountId);
+        final def target = new AccountNotFoundException(accountId);
 
         then:
         "it's message will have ${accountId} passed in, informing us card member was not found."
