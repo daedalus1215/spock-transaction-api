@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class AccountTransactionsController {
     }
 
     @GetMapping("/{accountId}/transactions")
-    public ResponseEntity<List<TransactionResponse>> getAccountTransactions(@PathVariable long accountId, @RequestParam(required = false) String fromDate) {
+    public ResponseEntity<List<TransactionResponse>> getAccountTransactions(@PathVariable long accountId, @RequestParam(required = false) String fromDate) throws AccountNotFoundException {
         return ResponseEntity.ok(transactionsService.getTransactions(accountId, fromDate));
     }
 }
