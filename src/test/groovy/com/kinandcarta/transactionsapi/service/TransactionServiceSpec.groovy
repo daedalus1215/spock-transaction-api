@@ -13,7 +13,7 @@ import java.time.LocalDate
 class TransactionServiceSpec extends Specification {
     private TransactionRepository transactionRepositoryMock
     private AccountRepository accountRepositoryMock
-    private TransactionsService transactionsService
+        private TransactionsService transactionsService
 
     def setup() {
         transactionRepositoryMock = Mock(TransactionRepository)
