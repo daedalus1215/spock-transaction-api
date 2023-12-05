@@ -31,6 +31,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.spockframework:spock-core:2.0-M5-groovy-3.0' // Add Spock dependency
     testImplementation 'junit:junit:4.12' // Add JUnit dependency
+    testImplementation 'org.spockframework:spock-spring:1.1-groovy-2.4'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     checkstyle 'com.puppycrawl.tools:checkstyle:10.12.5'
