@@ -10,7 +10,7 @@ class TransactionsApiExceptionHandlerSpec extends Specification {
     def "should return Error"() {
         given: "an accountId"
         final def accountId = randomLong()
-        final def target = new TransactionsApiExceptionHandler();
+        final def target = new TransactionsApiExceptionHandler()
 
         when: "AccountNotFoundException is thrown"
         def actual = target.handleAccountNotFoundException(new AccountNotFoundException(accountId))
@@ -18,6 +18,6 @@ class TransactionsApiExceptionHandlerSpec extends Specification {
         then: "returned error will capture the Exception class and message from it"
         actual.getError() == new Error(
                 "AccountNotFoundException",
-                "The card member account with an id of ${accountId} was not found.");
+                "The card member account with an id of ${accountId} was not found.")
     }
 }
