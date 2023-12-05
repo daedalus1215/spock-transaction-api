@@ -11,10 +11,10 @@ class DateUtilsSpec extends Specification {
 
     def "should convert timestamp into date"() {
         given: "a timestamp and a format"
-        def timestamp = LocalDate.of(2023, 12, 10).getLong(EPOCH_DAY);
+        final def timestamp = LocalDate.of(2023, 12, 10).getLong(EPOCH_DAY)
 
         expect: "to return the correct date in the specified format"
-        def actual = DateUtils.formatEpochDateAsString(timestamp, format)
+        final def actual = DateUtils.formatEpochDateAsString(timestamp, format)
 
         actual == expected
 
