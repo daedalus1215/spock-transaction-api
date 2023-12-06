@@ -55,7 +55,7 @@ GET `/accounts/{accountId}/transactions?fromDate=2021-01-31`
 
 # Article:
 The majority of projects that handle requests, now-a-days, follow similar request to response flows and have similar structure / architecture. 
-So, when a requirement is requested of us to build a new endpoint, in a new service project, that can do 2 things: 
+So, when a requirement comes our way  build a new endpoint, in a new service project, that can do 2 things: 
   * fetch all transactions associated with an `accountId`, and 
   * fetch all transactions associated with an `accountId`, after or on a certain `fromDate`, 
 
@@ -68,7 +68,7 @@ we know the class patterns we will use are generally the same:
   * 1 or more Data Transfer Objects (dto) (eg: `TransactionResponse`), which will be the response returned by our request handler (i.e. Controller's method).
 
 ------
-START OF JOURNEY1
+Journey1 branch
 ------
 We can begin the development from either end of our project, or really anywhere in between. I've chosen to start with the controller, for no particular reason. This requires:
 1. The Controller, the SUT (our target for the test)
@@ -78,7 +78,7 @@ We can begin the development from either end of our project, or really anywhere 
 Our focus here will be to write a Spec for the Controller, and in the Spec we will mock the App Service. We do not need the App Service to actually return anything currently, we just need its contract for mocking purposes. 
 
 ------
-START OF JOURNEY2
+Journey2 branch
 ------
 The domain we are working in has entities (`Transaction`) that reference other entities (`Account`), in a many-to-one relationship. As we move over to our Service, we will need to 
 build these entities up and have our service focus on 3 things:
@@ -96,7 +96,7 @@ There is additional work, where we will need to modify our Controller. Since the
 The Controller will leverage a `@RestControllerAdvice` on a new Api exception handling class. So we will need to update our Controller's Spec. 
 
 ------
-START OF JOURNEY3
+Journey3 branch
 ------
 The last classes we need to test are our repositories. We will not write unit tests for repositories, since they are interfaces. Also,
 their functionality is coupled to the database, so the really ought to be tested with the database in mind. Which means we are going to write integration tests.
