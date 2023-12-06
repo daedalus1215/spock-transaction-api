@@ -13,7 +13,7 @@ class TransactionsApiExceptionHandlerSpec extends Specification {
         final def target = new TransactionsApiExceptionHandler()
 
         when: "AccountNotFoundException is thrown"
-        def actual = target.handleAccountNotFoundException(new AccountNotFoundException(accountId))
+        final def actual = target.handleAccountNotFoundException(new AccountNotFoundException(accountId))
 
         then: "returned error will capture the Exception class and message from it"
         actual.getError() == new Error(
