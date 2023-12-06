@@ -7,12 +7,14 @@ import datafixtures.TransactionBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import spock.lang.Specification
+import spock.lang.Subject
 
 import java.time.LocalDate
 
 import static java.util.Set.of
 
 @DataJpaTest
+@Subject(TransactionRepository)
 class TransactionRepositorySpec extends Specification {
 
     @Autowired

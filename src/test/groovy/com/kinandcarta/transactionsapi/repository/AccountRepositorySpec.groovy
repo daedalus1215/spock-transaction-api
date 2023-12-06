@@ -10,10 +10,7 @@ import spock.lang.Specification
 class AccountRepositorySpec extends Specification {
 
     @Autowired
-    private TransactionRepository transactionRepository
-
-    @Autowired
-    private AccountRepository accountRepository
+    private AccountRepository target
 
     private final static long FIRST_ACCOUNT_ID = 789L
 
@@ -26,7 +23,7 @@ class AccountRepositorySpec extends Specification {
         final def accountId = FIRST_ACCOUNT_ID
 
         when: "findById is invoked with the account id"
-        final def actual = accountRepository.findById(accountId)
+        final def actual = target.findById(accountId)
 
         then: "returns only the account associated with the id"
         actual.get().getAccountId() == accountId
@@ -38,13 +35,13 @@ class AccountRepositorySpec extends Specification {
     }
 
     def saveFirstAccount() {
-        accountRepository.save(new AccountBuilder()
+        target.save(new AccountBuilder()
                 .withAccountId(789L)
                 .build())
     }
 
     def saveSecondAccount() {
-        accountRepository.save(new AccountBuilder()
+        target.save(new AccountBuilder()
                 .withAccountId(123L)
                 .build())
     }
