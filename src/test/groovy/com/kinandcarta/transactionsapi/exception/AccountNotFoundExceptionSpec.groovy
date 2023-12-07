@@ -14,6 +14,6 @@ class AccountNotFoundExceptionSpec extends Specification {
         final def target = new AccountNotFoundException(accountId);
 
         then: "it's message will have the accountId passed in, informing us that the card member was not found."
-        target.getMessage() == "The card member account with an id of ${accountId} was not found.";
+        target.getMessage() == "The card member account with an id of $accountId was not found.";
     }
 }

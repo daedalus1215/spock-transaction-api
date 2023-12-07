@@ -34,27 +34,26 @@ class TransactionRepositorySpec extends Specification {
         given: "an accountId"
         final def accountId = SECOND_ACCOUNT_ID
 
-        when: "findAllByAccount_AccountId is invoked with account id"
+        when: "findAllByAccount_AccountId is invoked"
         final List<Transaction> actual = target.findAllByAccount_AccountId(accountId)
 
-        then: "returns only transactions associated with the account id"
+        then: "returns only transactions associated with the account id: $accountId"
         actual.size() == 1
         actual.get(0).getAccount().getAccountId() == accountId
     }
 
-    def "should find all transactions associated with an account and greater than or equal to a date"() {
+    def "should find all transactions associated with an account while being greater than or equal to a date"() {
         given: "an account id and a date"
         final def accountId = FIRST_ACCOUNT_ID
 
-        when: "findAllByAccountAccountIdAndDateGreaterThanEqual is invoked with given account id and date"
-        final List<Transaction> actual = target
-                .findAllByAccountAccountIdAndDateGreaterThanEqual(
-                        accountId,
-                        LocalDate.of(2022, 2, 2).toEpochDay())
+        when: "findAllByAccountAccountIdAndDateGreaterThanEqual is invoked"
+        final List<Transaction> actual = target.findAllByAccountAccountIdAndDateGreaterThanEqual(
+                accountId,
+                LocalDate.of(2022, 2, 2).toEpochDay())
 
-        then: "returns only transactions on or after the given date and associated with the account id"
+        then: "returns only transactions associated with the account id: $accountId, on, or after the given date"
         actual.size() == 2
-        actual.collect { transaction -> transaction.getTransactionId() } == [2L, 3L]
+        actual.collect { transaction -> transaction.transactionId } == [2L, 3L]
     }
 
     def initializeData() {
@@ -64,7 +63,7 @@ class TransactionRepositorySpec extends Specification {
 
     def saveFirstAccount() {
         final Account account = new AccountBuilder()
-                .withAccountId(789L)
+                .withAccountId(FIRST_ACCOUNT_ID)
                 .build()
 
         account.setTransactions(of(
@@ -90,7 +89,7 @@ class TransactionRepositorySpec extends Specification {
 
     def saveSecondAccount() {
         final Account account = new AccountBuilder()
-                .withAccountId(123L)
+                .withAccountId(SECOND_ACCOUNT_ID)
                 .build()
 
         final Transaction transaction = new TransactionBuilder()
