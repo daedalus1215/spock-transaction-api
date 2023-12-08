@@ -6,10 +6,13 @@ import com.kinandcarta.transactionsapi.repository.AccountRepository
 import com.kinandcarta.transactionsapi.repository.TransactionRepository
 import datafixtures.AccountBuilder
 import datafixtures.TransactionBuilder
+import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 import java.time.LocalDate
 
+@Title("Test for Transaction Service")
 class TransactionServiceSpec extends Specification {
     private TransactionRepository transactionRepositoryMock
     private AccountRepository accountRepositoryMock

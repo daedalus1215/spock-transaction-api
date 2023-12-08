@@ -6,6 +6,7 @@ import datafixtures.TransactionResponseBuilder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
+import spock.lang.Title
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
@@ -14,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static utils.RandomGenerator.randomInt
 import static utils.RandomGenerator.randomString
 
+@Title("Test suite for Account Transactions Controller")
 class AccountTransactionsControllerSpec extends Specification {
     private TransactionsService transactionsServiceMock
     private MockMvc mvcMock
@@ -82,8 +84,6 @@ class AccountTransactionsControllerSpec extends Specification {
         final def fromDate = randomString()
 
         when: "request is made against registered request handler with the accountId and fromDate"
-
-        then: "get transactions will be invoked with accountId and fromDate and will return expected transactions"
         mvcMock.perform(get("/accounts/{accountId}/transactions", accountId)
                 .param("fromDate", fromDate))
                 .andDo(print())
@@ -93,6 +93,8 @@ class AccountTransactionsControllerSpec extends Specification {
                 .andExpect(jsonPath('$[0].amount').value(transaction.amount))
                 .andExpect(jsonPath('$[0].merchantName').value(transaction.merchantName))
                 .andExpect(jsonPath('$[0].summary').value(transaction.summary))
+
+        then: "get transactions will be invoked with accountId and fromDate and will return expected transactions"
         1 * transactionsServiceMock.getTransactions(accountId, fromDate) >> [transaction]
     }
 }

@@ -6,8 +6,10 @@ import datafixtures.AccountBuilder
 import datafixtures.TransactionBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Title
 
 import java.time.LocalDate
 
@@ -15,6 +17,8 @@ import static java.util.Set.of
 
 @DataJpaTest
 @Subject(TransactionRepository)
+@Title("Test for Account Repository")
+@Narrative("Only covering the actual public contract we expose from the repository")
 class TransactionRepositorySpec extends Specification {
 
     @Autowired
