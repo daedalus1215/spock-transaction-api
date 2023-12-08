@@ -1,0 +1,6 @@
+
+task checkstyle {
+    dependsOn 'checkstyleTest'
+    dependsOn 'checkstyleMain'
+    tasks.findByName('checkstyleMain').mustRunAfter 'checkstyleTest'
+}

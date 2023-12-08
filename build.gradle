@@ -5,6 +5,8 @@ plugins {
     id 'groovy' // Add the Groovy plugin for Spock support
     id 'checkstyle'
 }
+apply from: 'gradle/checkstyle.gradle'
+apply from: 'gradle/test.gradle'
 
 group = 'com.kinandcarta'
 version = '0.0.1-SNAPSHOT'
@@ -18,7 +20,7 @@ configurations {
 
 repositories {
     mavenCentral()
-    jcenter() // puppycrawl is located here
+    jcenter() // puppycrawl is located here, so we can utilize `final` declaration checkstyle rule
 }
 
 dependencies {
@@ -36,31 +38,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     checkstyle 'com.puppycrawl.tools:checkstyle:10.12.5'
-}
-
-sourceSets {
-    test {
-        groovy {
-            srcDirs = ['src/test/groovy']
-        }
-    }
-}
-
-test {
-    useJUnitPlatform()
-    def groovyTestDirs = project.sourceSets.test.groovy.srcDirs
-    testClassesDirs += files(groovyTestDirs) // Use the 'files()' method to create a FileCollection
-}
-
-
-tasks.withType(GroovyCompile) {
-    groovyOptions.forkOptions.jvmArgs << '-Dspring.spock.ignore-headers=true'
-}
-
-task checkstyle {
-    dependsOn 'checkstyleTest'
-    dependsOn 'checkstyleMain'
-    tasks.findByName('checkstyleMain').mustRunAfter 'checkstyleTest'
 }
 
 task checkWithTest(dependsOn: ['checkstyle', 'test'])
