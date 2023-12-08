@@ -26,10 +26,10 @@ class AccountRepositorySpec extends Specification {
         given: "an accountId"
         final def accountId = FIRST_ACCOUNT_ID
 
-        when: "findById is invoked with the account id"
+        when: "findById is invoked with accountId: $accountId"
         final def actual = target.findById(accountId)
 
-        then: "returns only the account associated with the id"
+        then: "returns only the account associated with $accountId"
         actual.get().getAccountId() == accountId
     }
 
@@ -40,13 +40,11 @@ class AccountRepositorySpec extends Specification {
 
     def saveFirstAccount() {
         target.save(new AccountBuilder()
-                .withAccountId(789L)
+                .withAccountId(FIRST_ACCOUNT_ID)
                 .build())
     }
 
     def saveSecondAccount() {
-        target.save(new AccountBuilder()
-                .withAccountId(123L)
-                .build())
+        target.save(new AccountBuilder().build())
     }
 }
