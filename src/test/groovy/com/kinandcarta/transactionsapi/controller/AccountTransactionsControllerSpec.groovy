@@ -6,6 +6,7 @@ import datafixtures.TransactionResponseBuilder
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
+import spock.lang.Title
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
@@ -14,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static utils.RandomGenerator.randomInt
 import static utils.RandomGenerator.randomString
 
+@Title("Test suite for Account Transactions Controller")
 class AccountTransactionsControllerSpec extends Specification {
     private TransactionsService transactionsServiceMock
     private MockMvc mvcMock

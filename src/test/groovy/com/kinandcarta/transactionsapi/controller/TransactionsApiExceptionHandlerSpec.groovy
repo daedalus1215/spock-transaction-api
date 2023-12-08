@@ -3,9 +3,11 @@ package com.kinandcarta.transactionsapi.controller
 import com.kinandcarta.transactionsapi.exception.AccountNotFoundException
 import com.kinandcarta.transactionsapi.exception.Error
 import spock.lang.Specification
+import spock.lang.Title
 
 import static utils.RandomGenerator.randomLong
 
+@Title("Test suite for Transactions Api Exception Handler")
 class TransactionsApiExceptionHandlerSpec extends Specification {
     def "should return Error"() {
         given: "an accountId"

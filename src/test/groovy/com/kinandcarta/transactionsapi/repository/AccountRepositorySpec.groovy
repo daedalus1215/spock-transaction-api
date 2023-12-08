@@ -4,9 +4,13 @@ package com.kinandcarta.transactionsapi.repository
 import datafixtures.AccountBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 @DataJpaTest
+@Title("Test for Account Repository")
+@Narrative("Only covering the actual public contract we expose from the repository")
 class AccountRepositorySpec extends Specification {
 
     @Autowired

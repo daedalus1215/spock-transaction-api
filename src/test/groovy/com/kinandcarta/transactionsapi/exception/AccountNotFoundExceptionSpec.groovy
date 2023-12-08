@@ -1,10 +1,13 @@
 package com.kinandcarta.transactionsapi.exception
 
-
+import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 import static utils.RandomGenerator.randomLong
 
+@Title("Test suite for Account Not Found Exception")
+@Narrative("We want to make sure we capture the account id for the exception's message")
 class AccountNotFoundExceptionSpec extends Specification {
     def "should return expected message with accountId"() {
         given: "an accountId"

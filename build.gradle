@@ -38,9 +38,20 @@ dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:10.12.5'
 }
 
+sourceSets {
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
+    def groovyTestDirs = project.sourceSets.test.groovy.srcDirs
+    testClassesDirs += files(groovyTestDirs) // Use the 'files()' method to create a FileCollection
 }
+
 
 tasks.withType(GroovyCompile) {
     groovyOptions.forkOptions.jvmArgs << '-Dspring.spock.ignore-headers=true'
@@ -51,3 +62,7 @@ task checkstyle {
     dependsOn 'checkstyleMain'
     tasks.findByName('checkstyleMain').mustRunAfter 'checkstyleTest'
 }
+
+task checkWithTest(dependsOn: ['checkstyle', 'test'])
+
+check.finalizedBy checkWithTest
