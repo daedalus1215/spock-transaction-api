@@ -1,6 +1,6 @@
 # transactions-api
-3. Gradle Sync
-2. Run `verification/check` under gradle's tasks 
+1. Gradle Sync
+2. Run `verification/check` under gradle's tasks
 
 # Article:
 
