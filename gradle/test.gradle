@@ -1,0 +1,9 @@
+
+test {
+    useJUnitPlatform()
+    testClassesDirs += files('src/test/groovy')
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.forkOptions.jvmArgs << '-Dspring.spock.ignore-headers=true'
+}

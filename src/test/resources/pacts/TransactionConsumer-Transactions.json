@@ -1,0 +1,274 @@
+{
+  "consumer": {
+    "name": "TransactionConsumer"
+  },
+  "interactions": [
+    {
+      "description": "accountId and fromDate",
+      "providerStates": [
+        {
+          "name": "transactions exist with accountId and date equal or greater than fromDate"
+        }
+      ],
+      "request": {
+        "matchingRules": {
+          "query": {
+            "fromDate": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "2022-02-02"
+                }
+              ]
+            }
+          }
+        },
+        "method": "GET",
+        "path": "/accounts/555/transactions",
+        "query": {
+          "fromDate": [
+            "2022-02-02"
+          ]
+        }
+      },
+      "response": {
+        "body": [
+          {
+            "accountId": "555",
+            "amount": 350.0,
+            "date": "2022-02-02",
+            "merchantName": "Walmart",
+            "summary": "Standing Desk",
+            "transactionId": "2"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$[0].accountId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].amount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$[0].date": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].merchantName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].summary": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].transactionId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "accountId",
+      "providerStates": [
+        {
+          "name": "transactions exist with accountId"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/accounts/555/transactions"
+      },
+      "response": {
+        "body": [
+          {
+            "accountId": "555",
+            "amount": 50.0,
+            "date": "2022-02-01",
+            "merchantName": "Amazon",
+            "summary": "XP Explained (Book)",
+            "transactionId": "1"
+          },
+          {
+            "accountId": "555",
+            "amount": 350.0,
+            "date": "2022-02-02",
+            "merchantName": "Walmart",
+            "summary": "Standing Desk",
+            "transactionId": "2"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$[0].accountId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].amount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$[0].date": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].merchantName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].summary": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].transactionId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[1].accountId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[1].amount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$[1].date": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[1].merchantName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[1].summary": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[1].transactionId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.2.7"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "Transactions"
+  }
+}

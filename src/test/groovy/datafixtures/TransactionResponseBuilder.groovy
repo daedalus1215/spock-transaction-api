@@ -1,7 +1,7 @@
 package datafixtures
 
 
-import com.kinandcarta.transactionsapi.domain.response.TransactionResponse
+import com.example.transactionsapi.domain.response.TransactionResponse
 
 import static utils.RandomGenerator.randomLong
 import static utils.RandomGenerator.randomBigDecimal
