@@ -1,6 +1,5 @@
 # spock-transaction-api
-* Has Spock tests
-* Has Pact contract provider test.
+* Has Spock tests & Has Pact contract provider test.
 
 
 Can use `fuzzy-guide` (Api Gateway) repo as the consumer of this API. Can easily run the `fuzzy-guide` consumer tests, to generate the 
