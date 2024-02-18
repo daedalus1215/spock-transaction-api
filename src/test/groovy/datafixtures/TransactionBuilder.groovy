@@ -1,7 +1,7 @@
 package datafixtures
 
-import com.kinandcarta.transactionsapi.entity.Account
-import com.kinandcarta.transactionsapi.entity.Transaction
+import com.example.transactionsapi.entity.Account
+import com.example.transactionsapi.entity.Transaction
 
 import java.time.LocalDate
 

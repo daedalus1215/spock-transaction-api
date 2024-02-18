@@ -1,9 +1,17 @@
-# transactions-api
+
+# spock-transaction-api
+* Has Spock tests & Has Pact contract provider test.
+
+Can use `fuzzy-guide` (Api Gateway) repo as the consumer of this API. Can easily run the `fuzzy-guide` consumer tests, to generate the 
+`TransactionConsumer-Transactions.json`. Once that file is generated, we can come back to this project and drop it in the:
+`test/resources/pacts/` directory. Then we can run the `PactProviderTest` in this repo to prove out that we are honoring the 
+contract.
+
+## Preliminary
 1. Gradle Sync
 2. Run `verification/check` under gradle's tasks
 
-# Article:
-
+## Article:
 The majority of projects that handle requests follow similar request to response flows and have similar patterns.
 Generally, if a requirement comes our way for to:
 * fetch all transactions associated with an `accountId`, and

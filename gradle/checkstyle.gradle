@@ -1,4 +1,3 @@
-
 task checkstyle {
     dependsOn 'checkstyleTest'
     dependsOn 'checkstyleMain'

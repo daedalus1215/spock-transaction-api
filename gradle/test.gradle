@@ -1,3 +1,4 @@
+
 sourceSets {
     test {
         groovy {
@@ -15,3 +16,4 @@ test {
 tasks.withType(GroovyCompile) {
     groovyOptions.forkOptions.jvmArgs << '-Dspring.spock.ignore-headers=true'
 }
+

@@ -1,0 +1,11 @@
+
+spotless {
+    java {
+        googleJavaFormat()
+        toggleOffOn('/*', '*/')
+    }
+}
+
+tasks.named('build').configure {
+    dependsOn 'spotlessApply'
+}

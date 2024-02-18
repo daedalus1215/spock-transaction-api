@@ -1,8 +1,8 @@
 package datafixtures
 
 
-import com.kinandcarta.transactionsapi.entity.Account
-import com.kinandcarta.transactionsapi.entity.Transaction
+import com.example.transactionsapi.entity.Account
+import com.example.transactionsapi.entity.Transaction
 
 import static utils.RandomGenerator.randomLong
 import static utils.RandomGenerator.randomString
