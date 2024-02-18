@@ -6,19 +6,22 @@ import com.example.transactionsapi.repository.AccountRepository
 import com.example.transactionsapi.repository.TransactionRepository
 import datafixtures.AccountBuilder
 import datafixtures.TransactionBuilder
+import spock.lang.Narrative
 import spock.lang.Specification
+import spock.lang.Title
 
 import java.time.LocalDate
 
+@Title("Test for Transaction Service")
 class TransactionServiceSpec extends Specification {
     private TransactionRepository transactionRepositoryMock
     private AccountRepository accountRepositoryMock
-    private TransactionsService transactionsService
+    private TransactionsService target
 
     def setup() {
         transactionRepositoryMock = Mock(TransactionRepository)
         accountRepositoryMock = Mock(AccountRepository)
-        transactionsService = new TransactionsService(transactionRepositoryMock, accountRepositoryMock)
+        target = new TransactionsService(transactionRepositoryMock, accountRepositoryMock)
     }
 
     def "should retrieve transaction with a date equal to or greater than fromDate"() {
@@ -29,7 +32,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransactions is invoked"
-        def actual = transactionsService.getTransactions(accountId, fromDate)
+        final def actual = target.getTransactions(accountId, fromDate)
 
         then: "returns expected transaction"
         verifyAll {
@@ -47,7 +50,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransactions is invoked"
-        def actual = transactionsService.getTransactions(accountId, null)
+        final def actual = target.getTransactions(accountId, null)
 
         then: "returns expected transaction"
         verifyAll {
@@ -65,7 +68,7 @@ class TransactionServiceSpec extends Specification {
         final def transaction = new TransactionBuilder().build()
 
         when: "getTransaction is invoked but repository returns no results"
-        def actual = transactionsService.getTransactions(accountId, null)
+        final def actual = target.getTransactions(accountId, null)
 
         then: "transactions will be empty"
         verifyAll {
@@ -87,10 +90,10 @@ class TransactionServiceSpec extends Specification {
         accountRepositoryMock.findById(accountId) >> Optional.empty()
 
         when: "getTransactions is invoked but no Account is found"
-        transactionsService.getTransactions(accountId, null)
+        target.getTransactions(accountId, null)
 
         then: "throws an AccountNotFoundException"
-        def actual = thrown(AccountNotFoundException)
+        final AccountNotFoundException actual = thrown(AccountNotFoundException)
         actual.message == "The card member account with an id of ${accountId} was not found."
     }
 }

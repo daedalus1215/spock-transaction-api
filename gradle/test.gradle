@@ -1,9 +1,19 @@
 
+sourceSets {
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
-    testClassesDirs += files('src/test/groovy')
+    def groovyTestDirs = project.sourceSets.test.groovy.srcDirs
+    testClassesDirs += files(groovyTestDirs) // Use the 'files()' method to create a FileCollection
 }
 
 tasks.withType(GroovyCompile) {
     groovyOptions.forkOptions.jvmArgs << '-Dspring.spock.ignore-headers=true'
 }
+

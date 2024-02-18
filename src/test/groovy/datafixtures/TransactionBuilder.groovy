@@ -17,7 +17,20 @@ class TransactionBuilder {
     private String summary = randomString()
     private Account account = new AccountBuilder().build()
 
-    //@TODO: Can add the with methods here, if we want to override the random values.
+    TransactionBuilder withAccount(Account account) {
+        this.account = account
+        return this
+    }
+
+    TransactionBuilder withDate(long date) {
+        this.date = date
+        return this
+    }
+
+    TransactionBuilder withTransactionId(long transactionId) {
+        this.transactionId = transactionId
+        return this
+    }
 
     def build() {
         new Transaction(

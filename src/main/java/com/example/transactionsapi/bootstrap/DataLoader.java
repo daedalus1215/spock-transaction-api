@@ -16,24 +16,28 @@ import static java.util.Collections.emptySet;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-  private final AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
-  public DataLoader(AccountRepository accountRepository) {
-    this.accountRepository = accountRepository;
-  }
+    public DataLoader(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
-  @Override
-  public void run(String... args) {
-    final Account account = new Account(123L, "Tony Soprano", emptySet());
-    final Transaction transaction =
-        new Transaction(
-            456L,
-            LocalDate.of(2022, 2, 2).toEpochDay(),
-            50.00,
-            "Amazon",
-            "XP Explained Book",
-            account);
-    account.setTransactions(Set.of(transaction));
-    accountRepository.save(account);
-  }
+    @Override
+    public void run(String... args) {
+        final Account account = new Account(
+                123L,
+                "Tony Soprano",
+                emptySet()
+        );
+        final Transaction transaction = new Transaction(
+                456L,
+                LocalDate.of(2022, 2, 2).toEpochDay(),
+                50.00,
+                "Amazon",
+                "XP Explained Book",
+                account
+        );
+        account.setTransactions(Set.of(transaction));
+        accountRepository.save(account);
+    }
 }
